@@ -58,5 +58,10 @@ CREATE TABLE LesResultats
   CONSTRAINT RES_CK1 CHECK (gold<>silver AND silver<>bronze AND gold<>bronze)
 );
 -- TODO 1.2a : ajouter la définition de la vue LesSportifs
+CREATE VIEW LesSportifs(numSp, nomSp, prenomSp, pays, dateNaisSp, categorieSp, ageSp) AS
+SELECT numSp, nomSp, prenomSp, pays, dateNaisSp, categorieSp, CAST((julianday()-julianday(dateNaisSp))/365.25 AS INT) as ageSp
+FROM LesSportifs_base;
+
+
 -- TODO 1.3a : ajouter la création de la table LesDisciplines et ajouter l'attribut discipline dans la table LesEpreuves
 -- TODO 1.4a : ajouter la définition de la vue LesEquipes

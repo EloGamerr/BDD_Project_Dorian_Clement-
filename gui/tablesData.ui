@@ -71,14 +71,14 @@
          <attribute name="horizontalHeaderCascadingSectionResizes">
           <bool>true</bool>
          </attribute>
-         <attribute name="horizontalHeaderMinimumSectionSize">
-          <number>50</number>
-         </attribute>
          <attribute name="horizontalHeaderDefaultSectionSize">
           <number>150</number>
          </attribute>
          <attribute name="horizontalHeaderHighlightSections">
           <bool>true</bool>
+         </attribute>
+         <attribute name="horizontalHeaderMinimumSectionSize">
+          <number>50</number>
          </attribute>
          <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
           <bool>true</bool>
@@ -201,11 +201,11 @@
          <property name="columnCount">
           <number>2</number>
          </property>
-         <attribute name="horizontalHeaderMinimumSectionSize">
-          <number>50</number>
-         </attribute>
          <attribute name="horizontalHeaderDefaultSectionSize">
           <number>200</number>
+         </attribute>
+         <attribute name="horizontalHeaderMinimumSectionSize">
+          <number>50</number>
          </attribute>
          <attribute name="horizontalHeaderStretchLastSection">
           <bool>true</bool>
@@ -281,11 +281,11 @@
       <layout class="QVBoxLayout" name="verticalLayout_5">
        <item>
         <widget class="QTableWidget" name="tableInscriptions">
-         <attribute name="horizontalHeaderMinimumSectionSize">
-          <number>50</number>
-         </attribute>
          <attribute name="horizontalHeaderDefaultSectionSize">
           <number>200</number>
+         </attribute>
+         <attribute name="horizontalHeaderMinimumSectionSize">
+          <number>50</number>
          </attribute>
          <attribute name="horizontalHeaderStretchLastSection">
           <bool>true</bool>
@@ -361,11 +361,11 @@
       <layout class="QVBoxLayout" name="verticalLayout_6">
        <item>
         <widget class="QTableWidget" name="tableResultats">
-         <attribute name="horizontalHeaderMinimumSectionSize">
-          <number>50</number>
-         </attribute>
          <attribute name="horizontalHeaderDefaultSectionSize">
           <number>200</number>
+         </attribute>
+         <attribute name="horizontalHeaderMinimumSectionSize">
+          <number>50</number>
          </attribute>
          <attribute name="horizontalHeaderStretchLastSection">
           <bool>true</bool>
@@ -451,11 +451,11 @@
       <layout class="QVBoxLayout" name="verticalLayout_7">
        <item>
         <widget class="QTableWidget" name="tableSportifs">
-         <attribute name="horizontalHeaderMinimumSectionSize">
-          <number>50</number>
-         </attribute>
          <attribute name="horizontalHeaderDefaultSectionSize">
           <number>110</number>
+         </attribute>
+         <attribute name="horizontalHeaderMinimumSectionSize">
+          <number>50</number>
          </attribute>
          <attribute name="horizontalHeaderStretchLastSection">
           <bool>true</bool>
@@ -491,6 +491,11 @@
          <column>
           <property name="text">
            <string>dateNaisSp</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>ageSp</string>
           </property>
          </column>
         </widget>
