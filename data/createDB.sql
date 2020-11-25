@@ -65,3 +65,7 @@ FROM LesSportifs_base;
 
 -- TODO 1.3a : ajouter la création de la table LesDisciplines et ajouter l'attribut discipline dans la table LesEpreuves
 -- TODO 1.4a : ajouter la définition de la vue LesEquipes
+CREATE VIEW LesEquipes(numEq, nbEquipiersEq) AS
+SELECT numEq, COUNT(numSp) as nbEquipiersEq
+FROM LesEquipiers
+GROUP BY numEq;
