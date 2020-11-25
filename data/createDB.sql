@@ -29,13 +29,13 @@ CREATE TABLE LesEpreuves
   categorieEp VARCHAR2(10),
   nbSportifsEp NUMBER(2),
   dateEp DATE,
-  discipline VARCHAR(50),
+  nomDi VARCHAR(50),
   CONSTRAINT EP_PK PRIMARY KEY (numEp),
   CONSTRAINT EP_CK1 CHECK (formeEp IN ('individuelle','par equipe','par couple')),
   CONSTRAINT EP_CK2 CHECK (categorieEp IN ('feminin','masculin','mixte')),
   CONSTRAINT EP_CK3 CHECK (numEp > 0),
   CONSTRAINT EP_CK4 CHECK (nbSportifsEp > 0),
-  CONSTRAINT E_FK FOREIGN KEY(discipline) REFERENCES LesDisciplines(nomDi)
+  CONSTRAINT E_FK FOREIGN KEY(nomDi) REFERENCES LesDisciplines(nomDi)
 );
 
 CREATE TABLE LesInscriptions
