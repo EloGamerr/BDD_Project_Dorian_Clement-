@@ -13,24 +13,42 @@ class AppFctComp4(QDialog):
         super(QDialog, self).__init__()
         self.ui = uic.loadUi("gui/fct_comp_4.ui", self)
         self.data = data
+        self.pays = None
         self.refreshCatList()
 
     # Fonction de mise à jour de l'affichage
     def refreshResult(self):
         # TODO 1.7 : fonction à modifier pour que l'équipe ne propose que des valeurs possibles pour le pays choisi
         display.refreshLabel(self.ui.label_fct_comp_4, "")
-        try:
-            cursor = self.data.cursor()
-            result = cursor.execute(
-                "SELECT numSp, nomSp, prenomSp, categorieSp, dateNaisSp FROM LesSportifs_base JOIN LesEquipiers USING (numSp) WHERE pays = ? AND numEq=?",
-                [self.ui.comboBox_fct_4_pays.currentText(),self.ui.spinBox_fct_4_equipe.text().strip()]
-            )
-        except Exception as e:
-            self.ui.table_fct_comp_4.setRowCount(0)
-            display.refreshLabel(self.ui.label_fct_comp_4, "Impossible d'afficher les résultats : " + repr(e))
-        else:
-            i = display.refreshGenericData(self.ui.table_fct_comp_4, result)
-            if i == 0:
+        if self.pays != self.ui.comboBox_fct_4_pays.currentText():
+            self.pays = self.ui.comboBox_fct_4_pays.currentText()
+            try:
+                cursor = self.data.cursor()
+                result = cursor.execute(
+                    "SELECT DISTINCT numEq FROM LesEquipiers JOIN LesSportifs USING(numSp) where pays= ?",
+                    [self.ui.comboBox_fct_4_pays.currentText()]
+                )
+            except Exception as e:
+                self.ui.comboBox_fct_4_equipe.clear()
+            else:
+                display.refreshGenericCombo(self.ui.comboBox_fct_4_equipe, result)
+        else: #Si le pays ne change pas, alors l'utilisateur a cliqué sur le bouton valider
+            if self.ui.comboBox_fct_4_equipe.count() != 0:
+                try:
+                    cursor = self.data.cursor()
+                    result = cursor.execute(
+                        "SELECT numSp, nomSp, prenomSp, categorieSp, dateNaisSp FROM LesSportifs_base JOIN LesEquipiers USING (numSp) WHERE pays = ? AND numEq=?",
+                        [self.ui.comboBox_fct_4_pays.currentText(),self.ui.comboBox_fct_4_equipe.currentText()]
+                    )
+                except Exception as e:
+                    self.ui.table_fct_comp_4.setRowCount(0)
+                    display.refreshLabel(self.ui.label_fct_comp_4, "Impossible d'afficher les résultats : " + repr(e))
+                else:
+                    i = display.refreshGenericData(self.ui.table_fct_comp_4, result)
+                    if i == 0:
+                        display.refreshLabel(self.ui.label_fct_comp_4, "Aucun résultat")
+            else:
+                self.ui.table_fct_comp_4.setRowCount(0)
                 display.refreshLabel(self.ui.label_fct_comp_4, "Aucun résultat")
 
     # Fonction de mise à jour des catégories
@@ -42,5 +60,7 @@ class AppFctComp4(QDialog):
             result = cursor.execute("SELECT DISTINCT pays FROM LesSportifs_base ORDER BY pays")
         except Exception as e:
             self.ui.comboBox_fct_4_pays.clear()
+            self.pays = None
         else:
             display.refreshGenericCombo(self.ui.comboBox_fct_4_pays, result)
+            self.pays = self.ui.comboBox_fct_4_pays.currentText()
