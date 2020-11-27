@@ -13,22 +13,30 @@ class AppFctComp3(QDialog):
         super(QDialog, self).__init__()
         self.ui = uic.loadUi("gui/fct_comp_3.ui", self)
         self.data = data
+        try:
+            cursor = self.data.cursor()
+            result = cursor.execute(
+                "SELECT DISTINCT categorieEp FROM LesEpreuves"
+            )
+        except Exception as e:
+            display.refreshLabel(self.ui.label_fct_comp_3, "Impossible de récupérer la liste des catégories : " + repr(e))
+        else:
+            display.refreshGenericCombo(self.ui.comboBox_fct_comp_3, result)
+            if self.ui.comboBox_fct_comp_3.count() == 0:
+                display.refreshLabel(self.ui.label_fct_comp_3, "Aucune catégorie disponible")
 
     # Fonction de mise à jour de l'affichage
     @pyqtSlot()
     def refreshResult(self):
         # TODO 1.6 : fonction à modifier pour remplacer la zone de saisie par une liste de valeurs issues de la BD une
         #  fois le fichier ui correspondant mis à jour
-        display.refreshLabel(self.ui.label_fct_comp_3, "")
-        if not self.ui.lineEdit_fct_comp_3.text().strip():
-            self.ui.table_fct_comp_3.setRowCount(0)
-            display.refreshLabel(self.ui.label_fct_comp_3, "Veuillez indiquer un nom de catégorie")
-        else:
+        if self.ui.comboBox_fct_comp_3.count() != 0:
+            display.refreshLabel(self.ui.label_fct_comp_3, "")
             try:
                 cursor = self.data.cursor()
                 result = cursor.execute(
-                    "SELECT numEp, nomEp, formeEp, nomDi, nbSportifsEp, dateEp FROM LesEpreuves WHERE categorieSp = ?",
-                    [self.ui.lineEdit_fct_comp_3.text().strip()])
+                    "SELECT numEp, nomEp, formeEp, nomDi, nbSportifsEp, dateEp FROM LesEpreuves WHERE categorieEp = ?",
+                    [self.ui.comboBox_fct_comp_3.currentText()])
             except Exception as e:
                 self.ui.table_fct_comp_3.setRowCount(0)
                 display.refreshLabel(self.ui.label_fct_comp_3, "Impossible d'afficher les résultats : " + repr(e))

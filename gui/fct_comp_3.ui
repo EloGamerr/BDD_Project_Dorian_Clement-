@@ -19,12 +19,12 @@
      <item>
       <widget class="QLabel" name="label_2">
        <property name="text">
-        <string>Saisissez une catégorie :</string>
+        <string>Sélectionnez une catégorie :</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="lineEdit_fct_comp_3"/>
+      <widget class="QComboBox" name="comboBox_fct_comp_3"/>
      </item>
      <item>
       <widget class="QPushButton" name="pushButton">
