@@ -133,7 +133,7 @@
    <sender>comboBox_fct_4_pays</sender>
    <signal>currentIndexChanged(QString)</signal>
    <receiver>fct_comp_4</receiver>
-   <slot>refreshResult()</slot>
+   <slot>refreshCombobox()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>242</x>
@@ -148,5 +148,6 @@
  </connections>
  <slots>
   <slot>refreshResult()</slot>
+  <slot>refreshCombobox()</slot>
  </slots>
 </ui>
