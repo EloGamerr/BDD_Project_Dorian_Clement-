@@ -29,7 +29,7 @@
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>5</number>
+      <number>6</number>
      </property>
      <widget class="QWidget" name="tabEpreuves">
       <attribute name="title">
@@ -66,7 +66,7 @@
           <bool>true</bool>
          </property>
          <property name="columnCount">
-          <number>6</number>
+          <number>7</number>
          </property>
          <attribute name="horizontalHeaderCascadingSectionResizes">
           <bool>true</bool>
@@ -102,6 +102,11 @@
          <column>
           <property name="text">
            <string>formeEp</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>nomDi</string>
           </property>
          </column>
          <column>
