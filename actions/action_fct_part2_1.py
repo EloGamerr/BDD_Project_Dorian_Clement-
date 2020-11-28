@@ -5,7 +5,6 @@ from PyQt5.QtWidgets import QDialog
 from PyQt5.QtCore import pyqtSlot
 from PyQt5 import uic
 
-# Classe permettant d'afficher la fonction fournie 1
 class AppFctPart21(QDialog):
 
     # Constructeur
