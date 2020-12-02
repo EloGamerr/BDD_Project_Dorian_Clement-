@@ -1108,6 +1108,22 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>pushButton_14</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>open_fct_part3_2()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>350</x>
+     <y>836</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>354</x>
+     <y>449</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>createDB()</slot>
@@ -1124,5 +1140,6 @@
   <slot>open_fct_comp_4()</slot>
   <slot>open_fct_part2_1()</slot>
   <slot>open_fct_part2_2()</slot>
+  <slot>open_fct_part3_2()</slot>
  </slots>
 </ui>
