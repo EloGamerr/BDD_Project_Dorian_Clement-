@@ -62,6 +62,7 @@ class AppWindow(QMainWindow):
         try:
             # On exécute les requêtes du fichier de création
             db.updateDBfile(self.data, "data/createDB.sql")
+            db.triggerDBfile(self.data, "data/triggerDB.sql")
 
         except Exception as e:
             # En cas d'erreur, on affiche un message
