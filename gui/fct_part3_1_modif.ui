@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Dialog</class>
- <widget class="QDialog" name="Dialog">
+<class>fct_part3_1_modif</class>
+ <widget class="QWidget" name="fct_part3_1_modif">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Form</string>
   </property>
   <widget class="QComboBox" name="numIn_Modification">
    <property name="geometry">
@@ -118,5 +118,25 @@
   </widget>
  </widget>
  <resources/>
- <connections/>
+   <connections>
+  <connection>
+   <sender>bouton_Modification</sender>
+   <signal>clicked()</signal>
+   <receiver>fct_part3_1_modif</receiver>
+   <slot>modifierRes()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>557</x>
+     <y>211</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>327</x>
+     <y>149</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>modifierRes()</slot>
+ </slots>
 </ui>

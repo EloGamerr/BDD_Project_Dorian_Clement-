@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Dialog</class>
- <widget class="QDialog" name="Dialog">
+ <class>fct_part3_1</class>
+ <widget class="QWidget" name="fct_part3_1">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Form</string>
   </property>
   <widget class="QComboBox" name="numEp_Suppression">
    <property name="geometry">
@@ -228,20 +228,107 @@
   </widget>
  </widget>
  <resources/>
-   <connection>
-   <sender>pushButton</sender>
+  <connections>
+  <connection>
+   <sender>bouton_Ajout</sender>
    <signal>clicked()</signal>
-   <receiver>fct_part3_1_1</receiver>
-   <slot>onClick_Ajout()</slot>
+   <receiver>fct_part3_1</receiver>
+   <slot>ajouterRes()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>437</x>
-     <y>21</y>
+     <x>557</x>
+     <y>131</y>
     </hint>
     <hint type="destinationlabel">
-     <x>91</x>
-     <y>1</y>
+     <x>327</x>
+     <y>149</y>
     </hint>
    </hints>
   </connection>
+   <connection>
+   <sender>bouton_Suppression</sender>
+   <signal>clicked()</signal>
+   <receiver>fct_part3_1</receiver>
+   <slot>supprimerRes()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>557</x>
+     <y>131</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>327</x>
+     <y>149</y>
+    </hint>
+   </hints>
+  </connection>
+   <connection>
+   <sender>numIn_Suppression</sender>
+   <signal>currentIndexChanged()</signal>
+   <receiver>fct_part3_1</receiver>
+   <slot>changedSuppression()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>557</x>
+     <y>131</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>327</x>
+     <y>149</y>
+    </hint>
+   </hints>
+  </connection>
+   <connection>
+   <sender>numIn_Modification</sender>
+   <signal>currentIndexChanged()</signal>
+   <receiver>fct_part3_1</receiver>
+   <slot>changedModification()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>557</x>
+     <y>131</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>327</x>
+     <y>149</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>bouton_Modification</sender>
+   <signal>clicked()</signal>
+   <receiver>fct_part3_1</receiver>
+   <slot>modifierRes()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>557</x>
+     <y>171</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>327</x>
+     <y>149</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>bouton_Suppression</sender>
+   <signal>clicked()</signal>
+   <receiver>fct_part3_1</receiver>
+   <slot>supprimerRes()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>557</x>
+     <y>211</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>327</x>
+     <y>149</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>ajouterRes()</slot>
+  <slot>supprimerRes()</slot>
+  <slot>ModifierRes()</slot>
+ </slots>
 </ui>

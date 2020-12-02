@@ -1,5 +1,7 @@
 
 import sys, sqlite3
+
+from actions.action_fct_part3_1 import AppFctPart31
 from utils import db
 from utils import display
 from PyQt5.QtWidgets import QMainWindow, QApplication
@@ -35,6 +37,7 @@ class AppWindow(QMainWindow):
     fct_comp_4_dialog = None
     fct_part2_1_dialog = None
     fct_part2_2_dialog = None
+    fct_part3_1_dialog = None
     fct_part3_2_dialog = None
 
     # Constructeur
@@ -178,6 +181,12 @@ class AppWindow(QMainWindow):
         self.fct_part2_2_dialog = AppFctPart22(self.data)
         self.fct_part2_2_dialog.show()
 
+    def open_fct_part3_1(self):
+        if self.fct_part3_1_dialog is not None:
+            self.fct_part3_1_dialog.close()
+        self.fct_part3_1_dialog = AppFctPart31(self.data)
+        self.fct_part3_1_dialog.show()
+
     def open_fct_part3_2(self):
         if self.fct_part3_2_dialog is not None:
             self.fct_part3_2_dialog.close()
@@ -213,6 +222,8 @@ class AppWindow(QMainWindow):
             self.fct_part2_1_dialog.close()
         if (self.fct_part2_2_dialog is not None):
             self.fct_part2_2_dialog.close()
+        if (self.fct_part3_1_dialog is not None):
+            self.fct_part3_1_dialog.close()
         if (self.fct_part3_2_dialog is not None):
             self.fct_part3_2_dialog.close()
 
