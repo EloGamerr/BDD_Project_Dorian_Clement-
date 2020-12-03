@@ -27,63 +27,59 @@ class AppFctPart31(QDialog):
         self.ui.numEp_Modification.clear()
         self.ui.numEp_Suppression.clear()
 
+        # Chargements des inscrits
         try:
             cursor = self.data.cursor()
-            result = cursor.execute("SELECT distinct numEq FROM LesEquipes UNION SELECT distinct numSp FROM LesSportifs ")
-        except Exception as e:
-            display.refreshLabel(self.ui.titre, "Impossible de récupérer les sportifs et les équipes pour l'ajout : " + repr(e))
+            result = cursor.execute(
+                "SELECT distinct numEq FROM LesEquipes UNION SELECT distinct numSp FROM LesSportifs ")
+        except Exception :
+            display.refreshLabel(self.ui.titre, "Impossible de récupérer les sportifs et les équipes pour l'ajout")
 
         else:
             display.refreshGenericCombo(self.ui.numIn_Ajout, result)
 
-        try:
-            cursor = self.data.cursor()
-            result = cursor.execute("SELECT distinct numIn FROM LesInscriptions")
-        except Exception as e:
-            display.refreshLabel(self.ui.titre, "Impossible de récupérer les sportifs et les équipes pour la modification / suppression : " + repr(e))
-
-        else:
-            for row_num, row_data in enumerate(result):
-                self.ui.numIn_Modification.addItem(str(row_data[0]))
-                self.ui.numIn_Suppression.addItem(str(row_data[0]))
-
+        # Chargements des epreuves
         try:
             cursor = self.data.cursor()
             result = cursor.execute("SELECT distinct numEp FROM LesEpreuves")
-        except Exception as e:
-            display.refreshLabel(self.ui.titre, "Impossible de récupérer les épreuves pour l'Ajout: " + repr(e))
+        except Exception :
+            display.refreshLabel(self.ui.titre, "Impossible de récupérer les épreuves")
         else:
             for row_num, row_data in enumerate(result):
                 self.ui.numEp_Ajout.addItem(str(row_data[0]))
+                self.ui.numEp_Modification.addItem(str(row_data[0]))
+                self.ui.numEp_Suppression.addItem(str(row_data[0]))
+
+        #Chargement des Inscrits de l'épreuve sélectionnée
+
+
 
     @pyqtSlot()
     def changedModification(self):
 
         try:
             cursor = self.data.cursor()
-            result = cursor.execute("SELECT distinct numEp FROM LesInscriptions WHERE numIn = ?",
-                           [self.ui.numIn_Modification.currentText()]
-                           )
+            result = cursor.execute("SELECT distinct numIn FROM LesInscriptions WHERE numEp = ?",
+                                    [self.ui.numEp_Modification.currentText()])
 
         except Exception as e:
-            display.refreshLabel(self.ui.titre, "Erreur de modification dans la table: " + repr(e))
+            display.refreshLabel(self.ui.titre, "Erreur de chargement des champs modification : Inscrits" )
         else:
-            display.refreshGenericCombo(self.ui.numEp_Modification, result)
+            display.refreshGenericCombo(self.ui.numIn_Modification, result)
 
     @pyqtSlot()
     def changedSuppression(self):
 
         try:
             cursor = self.data.cursor()
-            result = cursor.execute("SELECT distinct numEp FROM LesInscriptions WHERE numIn = ?",
-                                    [self.ui.numIn_Suppression.currentText()]
+            result = cursor.execute("SELECT distinct numIn FROM LesInscriptions WHERE numEp = ?",
+                                    [self.ui.numEp_Suppression.currentText()]
                                     )
 
-        except Exception as e:
-            display.refreshLabel(self.ui.titre, "Erreur de suppression dans la table: " + repr(e))
+        except Exception:
+            display.refreshLabel(self.ui.titre, "Erreur de chargement des champs suppression : Inscrits")
         else:
-            display.refreshGenericCombo(self.ui.numEp_Suppression, result)
-
+            display.refreshGenericCombo(self.ui.numIn_Suppression, result)
 
     @pyqtSlot()
     def ajouterRes(self):
@@ -94,28 +90,35 @@ class AppFctPart31(QDialog):
                            [self.ui.numIn_Ajout.currentText(), self.ui.numEp_Ajout.currentText()]
                            )
 
-        except Exception as e:
-            display.refreshLabel(self.ui.titre, "Erreur d'ajout dans la table: " + repr(e))
+        except Exception:
+            display.refreshLabel(self.ui.titre, "Attention, cette inscription existe déjà ")
         else:
-            display.refreshLabel(self.ui.titre, "L'ajout a bien été effectué")
+            display.refreshLabel(self.ui.titre, "L'inscription à été ajoutée")
+            self.changedSuppression()
+            self.changedModification()
 
     @pyqtSlot()
     def supprimerRes(self):
+        if self.ui.numIn_Suppression.currentText() != "":
+            try:
+                cursor = self.data.cursor()
+                cursor.execute("DELETE FROM LesInscriptions WHERE numIn = ? AND numEp = ? ", [self.ui.numIn_Suppression.currentText(), self.ui.numEp_Suppression.currentText()])
 
-        try:
-            cursor = self.data.cursor()
-            cursor.execute("DELETE FROM LesInscriptions WHERE numIn = ? AND numEp = ? ",
-                           [self.ui.numIn_Suppression.currentText(), self.ui.numEp_Suppression.currentText()]
-                           )
-
-        except Exception as e:
-            display.refreshLabel(self.ui.titre, "Erreur de suppression dans la table: " + repr(e))
+            except Exception :
+                display.refreshLabel(self.ui.titre, "Erreur de suppression dans la table ")
+            else:
+                display.refreshLabel(self.ui.titre, "Suppression effectuée")
+                self.changedSuppression()
+                self.changedModification()
         else:
-            display.refreshLabel(self.ui.titre, "Suppression effectuée")
+            display.refreshLabel(self.ui.titre, "Il n'y a rien à supprimer")
 
     @pyqtSlot()
     def modifierRes(self):
-        self.open_fct_part3_1_modif()
+        if self.ui.numIn_Modification.currentText() != "":
+            self.open_fct_part3_1_modif()
+        else:
+            display.refreshLabel(self.ui.titre, "Veuillez choisir un numéro d'inscrit ET un numéro d'épreuve")
 
     def open_fct_part3_1_modif(self):
         if self.fct_part3_1_modif_dialog is not None:
@@ -123,6 +126,7 @@ class AppFctPart31(QDialog):
         self.fct_part3_1_modif_dialog = AppFctPart31Modif(self.data, self)
         self.fct_part3_1_modif_dialog.show()
 
-    def closeEvent(self, event):
+    def close(self):
         if (self.fct_part3_1_modif_dialog is not None):
             self.fct_part3_1_modif_dialog.close()
+

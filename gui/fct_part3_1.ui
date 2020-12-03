@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QComboBox" name="numEp_Suppression">
+  <widget class="QComboBox" name="numIn_Suppression">
    <property name="geometry">
     <rect>
      <x>240</x>
@@ -67,7 +67,7 @@
     <set>Qt::AlignCenter</set>
    </property>
   </widget>
-  <widget class="QComboBox" name="numEp_Ajout">
+  <widget class="QComboBox" name="numIn_Ajout">
    <property name="geometry">
     <rect>
      <x>240</x>
@@ -77,7 +77,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QComboBox" name="numIn_Modification">
+  <widget class="QComboBox" name="numEp_Modification">
    <property name="geometry">
     <rect>
      <x>150</x>
@@ -87,7 +87,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QComboBox" name="numIn_Suppression">
+  <widget class="QComboBox" name="numEp_Suppression">
    <property name="geometry">
     <rect>
      <x>150</x>
@@ -97,7 +97,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QComboBox" name="numEp_Modification">
+  <widget class="QComboBox" name="numIn_Modification">
    <property name="geometry">
     <rect>
      <x>240</x>
@@ -184,7 +184,7 @@
     <string>Ajouter</string>
    </property>
   </widget>
-  <widget class="QComboBox" name="numIn_Ajout">
+  <widget class="QComboBox" name="numEp_Ajout">
    <property name="geometry">
     <rect>
      <x>150</x>
@@ -194,7 +194,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QLabel" name="titre_NumIn">
+  <widget class="QLabel" name="titre_NumEp">
    <property name="geometry">
     <rect>
      <x>150</x>
@@ -204,13 +204,13 @@
     </rect>
    </property>
    <property name="text">
-    <string>numIn</string>
+    <string>numEp</string>
    </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>
    </property>
   </widget>
-  <widget class="QLabel" name="titre_NumEp">
+  <widget class="QLabel" name="titre_NumIn">
    <property name="geometry">
     <rect>
      <x>240</x>
@@ -220,7 +220,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>numEp</string>
+    <string>numIn</string>
    </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>
@@ -262,8 +262,8 @@
    </hints>
   </connection>
    <connection>
-   <sender>numIn_Suppression</sender>
-   <signal>currentIndexChanged()</signal>
+   <sender>numEp_Suppression</sender>
+   <signal>activated()</signal>
    <receiver>fct_part3_1</receiver>
    <slot>changedSuppression()</slot>
    <hints>
@@ -278,8 +278,8 @@
    </hints>
   </connection>
    <connection>
-   <sender>numIn_Modification</sender>
-   <signal>currentIndexChanged()</signal>
+   <sender>numEp_Modification</sender>
+   <signal>activated()</signal>
    <receiver>fct_part3_1</receiver>
    <slot>changedModification()</slot>
    <hints>
