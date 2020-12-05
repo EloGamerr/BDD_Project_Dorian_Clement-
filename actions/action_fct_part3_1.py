@@ -33,7 +33,7 @@ class AppFctPart31(QDialog):
             result = cursor.execute(
                 "SELECT distinct numEq FROM LesEquipes UNION SELECT distinct numSp FROM LesSportifs ")
         except Exception :
-            display.refreshLabel(self.ui.titre, "Impossible de récupérer les sportifs et les équipes pour l'ajout")
+            display.refreshLabel(self.ui.titre, "Impossible de récupérer les sportifs et les équipes pour l'ajout : " + repr(e))
 
         else:
             display.refreshGenericCombo(self.ui.numIn_Ajout, result)
@@ -43,7 +43,7 @@ class AppFctPart31(QDialog):
             cursor = self.data.cursor()
             result = cursor.execute("SELECT distinct numEp FROM LesEpreuves")
         except Exception :
-            display.refreshLabel(self.ui.titre, "Impossible de récupérer les épreuves")
+            display.refreshLabel(self.ui.titre, "Impossible de récupérer les épreuves : " + repr(e))
         else:
             for row_num, row_data in enumerate(result):
                 self.ui.numEp_Ajout.addItem(str(row_data[0]))
@@ -63,7 +63,7 @@ class AppFctPart31(QDialog):
                                     [self.ui.numEp_Modification.currentText()])
 
         except Exception as e:
-            display.refreshLabel(self.ui.titre, "Erreur de chargement des champs modification : Inscrits" )
+            display.refreshLabel(self.ui.titre, "Erreur de chargement des champs modification : Inscrits : " + repr(e))
         else:
             display.refreshGenericCombo(self.ui.numIn_Modification, result)
 
@@ -76,8 +76,8 @@ class AppFctPart31(QDialog):
                                     [self.ui.numEp_Suppression.currentText()]
                                     )
 
-        except Exception:
-            display.refreshLabel(self.ui.titre, "Erreur de chargement des champs suppression : Inscrits")
+        except Exception as e:
+            display.refreshLabel(self.ui.titre, "Erreur de chargement des champs suppression : Inscrits : " + repr(e))
         else:
             display.refreshGenericCombo(self.ui.numIn_Suppression, result)
 
@@ -90,8 +90,8 @@ class AppFctPart31(QDialog):
                            [self.ui.numIn_Ajout.currentText(), self.ui.numEp_Ajout.currentText()]
                            )
 
-        except Exception:
-            display.refreshLabel(self.ui.titre, "Attention, cette inscription existe déjà ")
+        except Exception as e:
+            display.refreshLabel(self.ui.titre, "Erreur d'ajout d'une inscription : " + repr(e))
         else:
             display.refreshLabel(self.ui.titre, "L'inscription à été ajoutée")
             self.changedSuppression()
@@ -104,8 +104,8 @@ class AppFctPart31(QDialog):
                 cursor = self.data.cursor()
                 cursor.execute("DELETE FROM LesInscriptions WHERE numIn = ? AND numEp = ? ", [self.ui.numIn_Suppression.currentText(), self.ui.numEp_Suppression.currentText()])
 
-            except Exception :
-                display.refreshLabel(self.ui.titre, "Erreur de suppression dans la table ")
+            except Exception as e:
+                display.refreshLabel(self.ui.titre, "Erreur de suppression d'une inscription : " + repr(e))
             else:
                 display.refreshLabel(self.ui.titre, "Suppression effectuée")
                 self.changedSuppression()
