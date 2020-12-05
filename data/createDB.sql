@@ -74,3 +74,4 @@ CREATE VIEW LesEquipes(numEq, nbEquipiersEq) AS
 SELECT numEq, COUNT(numSp) as nbEquipiersEq
 FROM LesEquipiers
 GROUP BY numEq;
+
