@@ -309,22 +309,7 @@
     </hint>
    </hints>
   </connection>
-  <connection>
-   <sender>bouton_Suppression</sender>
-   <signal>clicked()</signal>
-   <receiver>fct_part3_1</receiver>
-   <slot>supprimerRes()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>557</x>
-     <y>211</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>327</x>
-     <y>149</y>
-    </hint>
-   </hints>
-  </connection>
+
  </connections>
  <slots>
   <slot>ajouterRes()</slot>
