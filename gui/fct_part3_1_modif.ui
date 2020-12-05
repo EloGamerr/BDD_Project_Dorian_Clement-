@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>550</width>
+    <width>691</width>
     <height>124</height>
    </rect>
   </property>
@@ -16,7 +16,7 @@
   <widget class="QComboBox" name="numEp_Modification">
    <property name="geometry">
     <rect>
-     <x>190</x>
+     <x>260</x>
      <y>70</y>
      <width>69</width>
      <height>22</height>
@@ -26,7 +26,7 @@
   <widget class="QLabel" name="label_Modification">
    <property name="geometry">
     <rect>
-     <x>50</x>
+     <x>120</x>
      <y>70</y>
      <width>121</width>
      <height>20</height>
@@ -48,7 +48,7 @@
   <widget class="QComboBox" name="numIn_Modification">
    <property name="geometry">
     <rect>
-     <x>280</x>
+     <x>350</x>
      <y>70</y>
      <width>69</width>
      <height>22</height>
@@ -58,7 +58,7 @@
   <widget class="QPushButton" name="bouton_Modification">
    <property name="geometry">
     <rect>
-     <x>380</x>
+     <x>450</x>
      <y>70</y>
      <width>75</width>
      <height>23</height>
@@ -71,9 +71,9 @@
   <widget class="QLabel" name="titre">
    <property name="geometry">
     <rect>
-     <x>0</x>
+     <x>10</x>
      <y>10</y>
-     <width>551</width>
+     <width>671</width>
      <height>20</height>
     </rect>
    </property>
@@ -87,7 +87,7 @@
   <widget class="QLabel" name="titre_NumEp">
    <property name="geometry">
     <rect>
-     <x>190</x>
+     <x>260</x>
      <y>50</y>
      <width>71</width>
      <height>20</height>
@@ -103,7 +103,7 @@
   <widget class="QLabel" name="titre_NumIn">
    <property name="geometry">
     <rect>
-     <x>280</x>
+     <x>350</x>
      <y>50</y>
      <width>71</width>
      <height>20</height>
@@ -116,7 +116,6 @@
     <set>Qt::AlignCenter</set>
    </property>
   </widget>
-
  </widget>
  <resources/>
  <connections>
